@@ -7,10 +7,10 @@ public class Aluno extends EntidadeEscolar {
     private double frequencia;
 
     // Construtores ------------------------------------------------------------------------
-    public Aluno(int codigoAluno, String serie, double frequencia, String nome, String endereco, String telefone ){
+    public Aluno(int codigoAluno, String serie, String nome, String endereco, String telefone ){
         super(nome, endereco, telefone); // invocação do construtor da classe pai
         this.codigoAluno=codigoAluno;
-        this.frequencia=frequencia;
+        this.frequencia=0;
         this.serie=serie;
     }
 

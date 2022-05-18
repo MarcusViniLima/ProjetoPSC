@@ -1,22 +1,22 @@
 package Projeto;
 
+import java.util.ArrayList;
+
 public class Turma {
 
+
     //Atributos da turma
+    ArrayList<Aluno> ListaTurma;
     private String codigoTurma;
     private int quantAluno;
-    private String alunosTurma;
-    private String disciplinasTurma;
-    private String horariosTurma;
+     Disciplina[][] horariosTurma;
 
 //Construtor da Turma
-    public Turma(String codigoTurma, int quantAluno,String alunosTurma,String disciplinasTurma,String horariosTurma) {
-
+    public Turma(String codigoTurma) {
+        this.ListaTurma=new ArrayList<>();
         this.codigoTurma = codigoTurma;
-        this.quantAluno = quantAluno;
-        this.alunosTurma = alunosTurma;
-        this.disciplinasTurma=disciplinasTurma;
-        this.horariosTurma=horariosTurma;
+        this.quantAluno = quantAluno();
+        this.horariosTurma= new Disciplina[3][5];
 
     }
 
@@ -33,22 +33,13 @@ public class Turma {
     public void setquantAluno(int quantAluno) {
         this.quantAluno=quantAluno;
     }
-    public String getalunosTurma() {
-        return this.alunosTurma;
+
+
+    //Metodos de turma----------------------------------------------------------------------------------------------------
+    public int quantAluno(){
+        return quantAluno++;
     }
-    public void setalunosTurma(String alunosTurma) {
-        this.alunosTurma=alunosTurma;
-    }
-    public String getdisciplinasTurma() {
-        return this.disciplinasTurma;
-    }
-    public void setdisciplinasTurma(String disciplinasTurma) {
-        this.disciplinasTurma=disciplinasTurma;
-    }
-    public String gethorariosTurma() {
-        return this.horariosTurma;
-    }
-    public void sethorariosTurma(String horariosTurma) {
-        this.horariosTurma=horariosTurma;
-    }
+
+
+
 }

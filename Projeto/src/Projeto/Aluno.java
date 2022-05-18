@@ -2,16 +2,16 @@ package Projeto;
 
 public class Aluno extends EntidadeEscolar {
     // Atributos ---------------------------------------------------------------------------
-    private int codigoAluno;
+    private String codigoAluno;
     private String serie;
-    private double frequencia;
+    Turma turma;
 
     // Construtores ------------------------------------------------------------------------
-    public Aluno(int codigoAluno, String serie, String nome, String endereco, String telefone ){
+    public Aluno(String codigoAluno, String serie, String nome, String endereco, String telefone ){
         super(nome, endereco, telefone); // invocação do construtor da classe pai
         this.codigoAluno=codigoAluno;
-        this.frequencia=0;
         this.serie=serie;
+        this.turma=turma;
     }
 
     //implementação obrigatória dos metódos abstratos da classe pai
@@ -42,23 +42,23 @@ public class Aluno extends EntidadeEscolar {
     }
 
     //Getters & Setters ------------------------------------------------------------------
-    public int getCodigoAluno() {
+    public String getCodigoAluno() {
         return codigoAluno;
-    }
-    public double getFrequencia() {
-        return frequencia;
     }
     public String getSerie() {
         return serie;
     }
-
-    public void setFrequencia(double frequencia) {
-        this.frequencia = frequencia;
+    public Turma getTurma() {
+        return turma;
     }
-    public void setCodigoAluno(int codigoAluno) {
+
+    public void setCodigoAluno(String codigoAluno) {
         this.codigoAluno = codigoAluno;
     }
     public void setSerie(String serie) {
         this.serie = serie;
+    }
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 }

@@ -2,16 +2,16 @@ package Projeto;
 
 public class Professor extends EntidadeEscolar {
     // Atributos ---------------------------------------------------------------------------
-    private int codigoProfessor;
-    private Turma turmas;
-    private Disciplina disciplina;
+    private String codigoProfessor;
+     Turma[] turmas;
+    private Disciplina disciplinas;
 
     // Construtores ------------------------------------------------------------------------
-    public Professor(int codigoProfessor, String nome, String endereco, String telefone){
+    public Professor(String codigoProfessor, String nome, String endereco, String telefone, Disciplina disciplinas){
         super(nome, endereco, telefone);
         this.codigoProfessor = codigoProfessor;
-        this.disciplina = disciplina;
-        this.turmas = null;
+        this.disciplinas = disciplinas;
+        this.turmas = new Turma[2];
     }
 
     //implementação obrigatória dos metódos abstratos da classe pai
@@ -43,22 +43,18 @@ public class Professor extends EntidadeEscolar {
 
     //Getters & Setters ------------------------------------------------------------------
     public Disciplina getDisciplina() {
-        return disciplina;
+        return disciplinas;
     }
-    public int getCodigoProfessor() {
+    public String getCodigoProfessor() {
         return codigoProfessor;
     }
-    public Turma getTurmas() {
-        return turmas;
-    }
 
-    public void setCodigoProfessor(int codigoProfessor) {
+
+    public void setCodigoProfessor(String codigoProfessor) {
         this.codigoProfessor = codigoProfessor;
     }
     public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+        this.disciplinas = disciplina;
     }
-    public void setTurmas(Turma turmas) {
-        this.turmas = turmas;
-    }
+
 }

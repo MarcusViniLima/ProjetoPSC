@@ -21,11 +21,11 @@ public class Aluno extends EntidadeEscolar {
     }
     @Override
     public String getEndereco() {
-        return endereco;
+        return endereco+" -Aluno";
     }
     @Override
     public String getTelefone() {
-        return telefone;
+        return telefone+" -Aluno";
     }
 
     @Override

@@ -78,10 +78,10 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
             for(int i =0; i < 2; i++){
                 professor.turmas[i]=turma;
             }
+        }else{
+            System.out.println("Código inválido");
         }
     }
-
-
 
     @Override
     public void cadastrarAlunoTurma(Aluno aluno, Turma turma) {
@@ -91,11 +91,14 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         if (codigoTurma.equals(turma.getCodigoTurma())){
             turma.ListaTurma.add(aluno);
             aluno.setTurma(turma);
+        } else{
+            System.out.println("Código inválido");
         }
     }
 
     //Atributos de Secretaria
-    public void cadastrarDisciplina(){ //criando objetos de disciplina
+    private void cadastros(){ //criando objetos de disciplina, professor e turma
+        //criando objeto de disciplina
         Disciplina Matematica = new Disciplina("Matemática", "Mat1234", "Matemática e suas tecnologias");
         Disciplina Portugues = new Disciplina("Português", "Port1234", "Linguagens, Códigos e suas Tecnologias");
         Disciplina Historia = new Disciplina("História", "Hist1234", "Ciências Humanas");
@@ -103,15 +106,14 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         Disciplina Ciencia = new Disciplina("Ciência", "Cien1234", "Ciências da Natureza");
         Disciplina Redacao = new Disciplina("Redação", "Red123", "Linguagens, Códigos e suas Tecnologias");
 
-        this.disciplinas.add(Matematica); //adicionando no arraylist
+        this.disciplinas.add(Matematica); //adicionando no arraylist de disciplina
         this.disciplinas.add(Portugues);
         this.disciplinas.add(Historia);
         this.disciplinas.add(Geografia);
         this.disciplinas.add(Ciencia);
         this.disciplinas.add(Redacao);
 
-    }
-    public void cadastrarProfessor(){//Criando objetos de professor
+        //criando objeto de professor
         Professor Pedro = new Professor("P1234", "Pedro", "Castelo Branco, Salvador, Bahia", "71 99912-3185", Matematica);
         Professor Leila = new Professor("L1234", "Leila", "Cajazeiras 5, Salvador, Bahia", "71 98752-9123", Matematica);
         Professor Jessica = new Professor("J1234", "Jessica", "Itapuã, Salvador, Bahia", "71 98825-6791", Portugues);
@@ -125,7 +127,7 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         Professor Ingride = new Professor("I1234", "Ingride", "Cajazeiras 11, Salvador, Bahia", "71 99214-7590", Redacao);
         Professor Manuel = new Professor("M1234", "Manuel", "Ribeira, Salvador, Bahia", "71 99214-8051", Redacao);
 
-        this.professores.add(Pedro); //adicionando no arraylist
+        this.professores.add(Pedro); //adicionando no arraylist de professor
         this.professores.add(Leila);
         this.professores.add(Jessica);
         this.professores.add(Carlos);
@@ -138,13 +140,7 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         this.professores.add(Ingride);
         this.professores.add(Manuel);
 
-    }
-    public void cadastrarAlunos(){ //criando objetos de aluno
-        Aluno Joao = new Aluno ("2548", "1º ano", "João", "São Marcos, Salvador, Bahia", "71 99999-8129");
-
-        this.Alunos.add(Joao);//adicionando no arraylist
-    }
-    public void cadastrarTurma() {
+        //criando objeto de professor;
         Turma A1 = new Turma("1A");
         Turma B1 = new Turma("1B");
         Turma A2 = new Turma("A1");
@@ -152,9 +148,24 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         Turma A3 = new Turma("3A");
         Turma B3 = new Turma("3B");
 
-    }
-    public void Horariosturma(){
+        //preenchendo o array de horarios de cada turma
         A1.horariosTurma[0][0] = Geografia;
+    }
+
+    public void cadastrarAlunos(){ //criando objetos de aluno
+        Aluno Joao = new Aluno ("2548", "1º ano", "João", "São Marcos, Salvador, Bahia", "71 99999-8129");
+
+        this.Alunos.add(Joao);//adicionando no arraylist
+    }
+    public void cadastrarTurma() { //criando objetos de turma
+
+    }
+    public void Horariosturma(){ //preenchendo array de cada turma
+
+    }
+
+    public void cadastrarProfessor(){//Criando objetos de professor
+
     }
 
     }

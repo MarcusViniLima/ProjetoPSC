@@ -70,7 +70,7 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
     }
 
     @Override
-    public void cadastrarProfessorTurma(Professor professor, Turma turma){
+    public void cadastrarProfessorTurma(Professor professor, Turma turma){ //***************precisa melhorar
         System.out.println("Digite o codigo da turma que deseja cadastrar o Professor");
         leitor = new Scanner(System.in);
         String codigoTurma = leitor.nextLine();
@@ -84,13 +84,16 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
     }
 
     @Override
-    public void cadastrarAlunoTurma(Aluno aluno, Turma turma) {
+    public void cadastrarAlunoTurma(Aluno aluno, Turma turma) { //***********precisa concertar
         System.out.println("Digite o codigo da turma que deseja cadastrar o aluno");
         leitor = new Scanner(System.in);
         String codigoTurma = leitor.nextLine();
         if (codigoTurma.equals(turma.getCodigoTurma())){
-            turma.ListaTurma.add(aluno);
-            aluno.setTurma(turma);
+            for(int i =0; i < 25; i++){
+                turma.ListaTurma[i] = aluno;//*********concertar
+                aluno.setTurma(turma);
+                turma.quantAluno();
+            }
         } else{
             System.out.println("Código inválido");
         }
@@ -141,15 +144,174 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         this.professores.add(Manuel);
 
         //criando objeto de professor;
-        Turma A1 = new Turma("1A");
-        Turma B1 = new Turma("1B");
-        Turma A2 = new Turma("A1");
-        Turma B2 = new Turma("B2");
-        Turma A3 = new Turma("3A");
-        Turma B3 = new Turma("3B");
+        Turma A1 = new Turma("1A", 25);
+        Turma B1 = new Turma("1B", 25);
+        Turma A2 = new Turma("2A", 25);
+        Turma B2 = new Turma("2B", 25);
+        Turma A3 = new Turma("3A", 25);
+        Turma B3 = new Turma("3B", 25);
 
         //preenchendo o array de horarios de cada turma
-        A1.horariosTurma[0][0] = Geografia;
+        A1.horariosTurma[0][0] = Matematica;
+        A1.horariosTurma[1][0] = Matematica;
+        A1.horariosTurma[2][0] = Ciencia;
+        A1.horariosTurma[3][0] = Ciencia;
+
+        A1.horariosTurma[0][1] = Geografia;
+        A1.horariosTurma[1][1] = Geografia;
+        A1.horariosTurma[2][1] = Portugues;
+        A1.horariosTurma[3][1] = Portugues;
+
+        A1.horariosTurma[0][2] = Historia;
+        A1.horariosTurma[1][2] = Historia;
+        A1.horariosTurma[2][2] = Redacao;
+        A1.horariosTurma[3][2] = Redacao;
+
+        A1.horariosTurma[0][3] = Portugues;
+        A1.horariosTurma[1][3] = Portugues;
+        A1.horariosTurma[2][3] = Matematica;
+        A1.horariosTurma[3][3] = Matematica;
+
+        A1.horariosTurma[0][4] = Ciencia;
+        A1.horariosTurma[1][4] = Ciencia;
+        A1.horariosTurma[2][4] = Geografia;
+        A1.horariosTurma[3][4] = Geografia;
+
+        //Horario turma B do Primeiro Ano
+
+        B1.horariosTurma[0][0] = Ciencia;
+        B1.horariosTurma[1][0] = Ciencia;
+        B1.horariosTurma[2][0] = Matematica;
+        B1.horariosTurma[3][0] = Matematica;
+
+        B1.horariosTurma[0][1] = Portugues;
+        B1.horariosTurma[1][1] = Portugues;
+        B1.horariosTurma[2][1] = Geografia;
+        B1.horariosTurma[3][1] = Geografia;
+
+        B1.horariosTurma[0][2] = Redacao;
+        B1.horariosTurma[1][2] = Redacao;
+        B1.horariosTurma[2][2] = Historia;
+        B1.horariosTurma[3][2] = Historia;
+
+        B1.horariosTurma[0][3] = Matematica;
+        B1.horariosTurma[1][3] = Matematica;
+        B1.horariosTurma[2][3] = Portugues;
+        B1.horariosTurma[3][3] = Portugues;
+
+        B1.horariosTurma[0][4] = Geografia;
+        B1.horariosTurma[1][4] = Geografia;
+        B1.horariosTurma[2][4] = Ciencia;
+        B1.horariosTurma[3][4] = Ciencia;
+
+        //Horario turma A do 2 Ano
+
+        A2.horariosTurma[0][0] = Portugues;
+        A2.horariosTurma[1][0] = Portugues;
+        A2.horariosTurma[2][0] = Historia;
+        A2.horariosTurma[3][0] = Historia;
+
+        A2.horariosTurma[0][1] = Matematica;
+        A2.horariosTurma[1][1] = Matematica;
+        A2.horariosTurma[2][1] = Ciencia;
+        A2.horariosTurma[3][1] = Ciencia;
+
+        A2.horariosTurma[0][2] = Ciencia;
+        A2.horariosTurma[1][2] = Ciencia;
+        A2.horariosTurma[2][2] = Portugues;
+        A2.horariosTurma[3][2] = Portugues;
+
+        A2.horariosTurma[0][3] = Redacao;
+        A2.horariosTurma[1][3] = Redacao;
+        A2.horariosTurma[2][3] = Geografia;
+        A2.horariosTurma[3][3] = Geografia;
+
+        A2.horariosTurma[0][4] = Matematica;
+        A2.horariosTurma[1][4] = Matematica;
+        A2.horariosTurma[2][4] = Historia;
+        A2.horariosTurma[3][4] = Historia;
+
+        //Horario turma B do 2 Ano
+
+        B2.horariosTurma[0][0] = Historia;
+        B2.horariosTurma[1][0] = Historia;
+        B2.horariosTurma[2][0] = Portugues;
+        B2.horariosTurma[3][0] = Portugues;
+
+        B2.horariosTurma[0][1] = Redacao;
+        B2.horariosTurma[1][1] = Redacao;
+        B2.horariosTurma[2][1] = Matematica;
+        B2.horariosTurma[3][1] = Matematica;
+
+        B2.horariosTurma[0][2] = Portugues;
+        B2.horariosTurma[1][2] = Portugues;
+        B2.horariosTurma[2][2] = Ciencia;
+        B2.horariosTurma[3][2] = Ciencia;
+
+        B2.horariosTurma[0][3] = Geografia;
+        B2.horariosTurma[1][3] = Geografia;
+        B2.horariosTurma[2][3] = Redacao;
+        B2.horariosTurma[3][3] = Redacao;
+
+        B2.horariosTurma[0][4] = Historia;
+        B2.horariosTurma[1][4] = Historia;
+        B2.horariosTurma[2][4] = Matematica;
+        B2.horariosTurma[3][4] = Matematica;
+
+        //Horario Turma A do Terceiro Ano
+
+        A3.horariosTurma[0][0] = Geografia;
+        A3.horariosTurma[1][0] = Geografia;
+        A3.horariosTurma[2][0] = Redacao;
+        A3.horariosTurma[3][0] = Redacao;
+
+        A3.horariosTurma[0][1] = Historia;
+        A3.horariosTurma[1][1] = Historia;
+        A3.horariosTurma[2][1] = Geografia;
+        A3.horariosTurma[3][1] = Geografia;
+
+        A3.horariosTurma[0][2] = Matematica;
+        A3.horariosTurma[1][2] = Matematica;
+        A3.horariosTurma[2][2] = Geografia;
+        A3.horariosTurma[3][2] = Geografia;
+
+        A3.horariosTurma[0][3] = Historia;
+        A3.horariosTurma[1][3] = Historia;
+        A3.horariosTurma[2][3] = Ciencia;
+        A3.horariosTurma[3][3] = Ciencia;
+
+        A3.horariosTurma[0][4] = Redacao;
+        A3.horariosTurma[1][4] = Redacao;
+        A3.horariosTurma[2][4] = Portugues;
+        A3.horariosTurma[3][4] = Portugues;
+
+        //Horario Turma B do Terceiro Ano
+
+        B3.horariosTurma[0][0] = Redacao;
+        B3.horariosTurma[1][0] = Redacao;
+        B3.horariosTurma[2][0] = Geografia;
+        B3.horariosTurma[3][0] = Geografia;
+
+        B3.horariosTurma[0][1] = Geografia;
+        B3.horariosTurma[1][1] = Geografia;
+        B3.horariosTurma[2][1] = Historia;
+        B3.horariosTurma[3][1] = Historia;
+
+        B3.horariosTurma[0][2] = Geografia;
+        B3.horariosTurma[1][2] = Geografia;
+        B3.horariosTurma[2][2] = Matematica;
+        B3.horariosTurma[3][2] = Matematica;
+
+        B3.horariosTurma[0][3] = Ciencia;
+        B3.horariosTurma[1][3] = Ciencia;
+        B3.horariosTurma[2][3] = Historia;
+        B3.horariosTurma[3][3] = Historia;
+
+        B3.horariosTurma[0][4] = Portugues;
+        B3.horariosTurma[1][4] = Portugues;
+        B3.horariosTurma[2][4] = Redacao;
+        B3.horariosTurma[3][4] = Redacao;
+
     }
 
     public void cadastrarAlunos(){ //criando objetos de aluno

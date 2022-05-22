@@ -17,15 +17,15 @@ public class Aluno extends EntidadeEscolar {
     //implementação obrigatória dos metódos abstratos da classe pai
     @Override
     public String getNome() {//implementação do método abstrato
-        return nome+" -Aluno";
+        return nome;
     }
     @Override
     public String getEndereco() {
-        return endereco+" -Aluno";
+        return endereco;
     }
     @Override
     public String getTelefone() {
-        return telefone+" -Aluno";
+        return telefone;
     }
 
     @Override
@@ -60,5 +60,14 @@ public class Aluno extends EntidadeEscolar {
     }
     public void setTurma(Turma turma) {
         this.turma = turma;
+    }
+
+    //Metodos-------------------------------------------------------------
+
+
+    @Override
+    public String toString() {
+        return "Aluno: "+getNome()+" | Codigo: "+getCodigoAluno()+" | Telefone: "+getTelefone()+ " | Enedereço: "+getEndereco()+" | Série: "+getSerie()+" | Turma: "+turma.getCodigoTurma()+
+                "|";
     }
 }

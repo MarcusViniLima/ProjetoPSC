@@ -2,10 +2,14 @@ package Projeto;
 
 public interface ISecretaria {
     public void cadastrarAluno();
+    public void cadastrarProfessor();
+    public void cadastrarDisciplina();
+    public void cadastrarTurma();
+    public void cadastrarProfessorDisciplina();
+    public void cadastrarProfessorTurma();
+    public void cadastrarAlunoTurma();
 
-    public void cadastrarProfessorTurma(Professor professor, Turma turma);
 
-    public void cadastrarAlunoTurma(Aluno aluno, Turma turma);
 
 
 

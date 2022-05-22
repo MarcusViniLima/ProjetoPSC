@@ -27,6 +27,6 @@ public class Disciplina {
     //mostrar os atributos da disciplina ---------------------------------------------
     @Override
     public String toString() {
-        return "Disciplina: "+getNome()+", código da disciplina: "+getCodigoDisciplina()+" e tipo: "+getTipo();
+        return "Disciplina: "+getNome()+" | Código: "+getCodigoDisciplina()+" | Tipo: "+getTipo();
     }
 }

@@ -6,13 +6,15 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
     ArrayList<Professor> professores;
     ArrayList<Disciplina> disciplinas;
     ArrayList<Aluno> Alunos;
+    ArrayList<Turma> Turmas;
 
     // Construtores ------------------------------------------------------------------------
     public Secretaria(String nome, String endereco, String telefone){
         super(nome, endereco, telefone);
-        this.professores=new ArrayList<>();
-        this.disciplinas=new ArrayList<>();
-        this.Alunos=new ArrayList<>();
+        this.professores=new ArrayList<Professor>();
+        this.disciplinas=new ArrayList<Disciplina>();
+        this.Alunos=new ArrayList<Aluno>();
+        this.Turmas = new ArrayList<Turma>();
     }
 
     //implementação obrigatória dos metódos abstratos da classe pai
@@ -48,7 +50,7 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
     public void cadastrarAluno(){
         System.out.println("Quantos alunos serão cadastrados?");
         int alunos = leitor.nextInt();
-        for(int i = this.Alunos.size(); i<alunos; i++){
+        for(int i = 0; i < alunos; i++){
             System.out.println("Digite o nome completo do aluno:");
             leitor = new Scanner(System.in);
             String NomeA = leitor.nextLine();
@@ -68,35 +70,128 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         }
 
     }
-
     @Override
-    public void cadastrarProfessorTurma(Professor professor, Turma turma){ //***************precisa melhorar
-        System.out.println("Digite o codigo da turma que deseja cadastrar o Professor");
+    public void cadastrarProfessor(){
+        System.out.println("Quantos professsores serão cadastrados?");
         leitor = new Scanner(System.in);
-        String codigoTurma = leitor.nextLine();
-        if (codigoTurma.equals(turma.getCodigoTurma())) {
-            for(int i =0; i < 2; i++){
-                professor.turmas[i]=turma;
-            }
-        }else{
-            System.out.println("Código inválido");
+        int professores = leitor.nextInt();
+        for(int i = 0; i < professores; i++){
+            System.out.println("Digite o código do professor");
+            leitor = new Scanner(System.in);
+            String codigo = leitor.nextLine();
+            System.out.println("Digite o nome do professor");
+            leitor = new Scanner(System.in);
+            String nome = leitor.nextLine();
+            System.out.println("Digite o endereco do professor");
+            leitor = new Scanner(System.in);
+            String endereco = leitor.nextLine();
+            System.out.println("Digite o telefone do professor");
+            leitor = new Scanner(System.in);
+            String telefone = leitor.nextLine();
+            this.professores.add(new Professor(codigo, nome, endereco, telefone));
         }
     }
-
     @Override
-    public void cadastrarAlunoTurma(Aluno aluno, Turma turma) { //***********precisa concertar
-        System.out.println("Digite o codigo da turma que deseja cadastrar o aluno");
+    public void cadastrarDisciplina(){
+        System.out.println("Quantos disciplinas serão cadastrados?");
         leitor = new Scanner(System.in);
-        String codigoTurma = leitor.nextLine();
-        if (codigoTurma.equals(turma.getCodigoTurma())){
-            for(int i =0; i < 25; i++){
-                turma.ListaTurma[i] = aluno;//*********concertar
-                aluno.setTurma(turma);
-                turma.quantAluno();
-            }
-        } else{
-            System.out.println("Código inválido");
+        int disciplinas = leitor.nextInt();
+        for(int i = 0; i < disciplinas; i++){
+            System.out.println("Digite o código da disciplina");
+            leitor = new Scanner(System.in);
+            String codigo = leitor.nextLine();
+            System.out.println("Digite o nome da disciplina");
+            leitor = new Scanner(System.in);
+            String nome = leitor.nextLine();
+            System.out.println("Digite o tipo da disciplina");
+            leitor = new Scanner(System.in);
+            String tipo = leitor.nextLine();
+            this.disciplinas.add(new Disciplina(nome, codigo,tipo));
         }
+    }
+    @Override
+    public void cadastrarTurma(){
+        System.out.println("Quantas turmas serão cadastradas?");
+        leitor = new Scanner(System.in);
+        int turmas = leitor.nextInt();
+        for(int i = 0; i < turmas; i++){
+            System.out.println("Digite o código da disciplina");
+            leitor = new Scanner(System.in);
+            String codigo = leitor.nextLine();
+            this.Turmas.add(new Turma(codigo));
+        }
+    }
+    @Override
+    public void cadastrarProfessorDisciplina(){
+        System.out.println("Digite o código do professor:");
+        leitor = new Scanner(System.in);
+        String codigoProfessor = leitor.nextLine();
+        for(int i = 0; i < professores.size(); i++) {
+            if (this.professores.get(i).getCodigoProfessor().equals(codigoProfessor)){
+                System.out.println("Digite o código da disciplina:");
+                leitor = new Scanner(System.in);
+                String codigoDisciplina = leitor.nextLine();
+                for(int j = 0; j < disciplinas.size(); j++) {
+                    if (this.disciplinas.get(j).getCodigoDisciplina().equals(codigoDisciplina)) {
+                        this.professores.get(i).setDisciplina(disciplinas.get(j));
+                        System.out.println("Disciplina cadastrada com sucesso");
+                    } else {
+                        System.out.println("Codigo da disciplina incorreto");
+                    }
+                }
+            }else{
+                System.out.println("Código do professor errado");
+            }
+        }
+    }
+    @Override
+    public void cadastrarProfessorTurma(){ //***************precisa melhorar
+        System.out.println("Digite o código do professor:");
+        leitor = new Scanner(System.in);
+        String codigoProfessor = leitor.nextLine();
+        for(int i = 0; i < professores.size(); i++) {
+            if(this.professores.get(i).getCodigoProfessor().equals(codigoProfessor)){
+                System.out.println("Digite o código da turma:");
+                leitor = new Scanner(System.in);
+                String codigoTurma = leitor.nextLine();
+                for(int j = 0; j < this.Turmas.size(); j++) {
+                    if (this.Turmas.get(j).getCodigoTurma().equals(codigoTurma)) {
+                        this.professores.get(i).setTurmas(Turmas.get(j));
+                        System.out.println("Professor cadastrado na turma com sucesso!");
+                    } else {
+                        System.out.println("Código da turma incorreto!");
+                    }
+                }
+            }else{
+                System.out.println("Código do Professor inválido");
+            }
+        }
+
+    }
+    @Override
+    public void cadastrarAlunoTurma() { //***********precisa concertar
+        System.out.println("Digite o codigo do Aluno");
+        leitor = new Scanner(System.in);
+        String codigoAluno = leitor.nextLine();
+        for(int i = 0; i < Alunos.size(); i++){
+            if(this.Alunos.get(i).getCodigoAluno().equals(codigoAluno)){
+                System.out.println("Digite o codigo da turma");
+                leitor = new Scanner(System.in);
+                String codigoTurma = leitor.nextLine();
+                for(int j = 0; j < this.Alunos.size(); j++) {
+                    if (this.Turmas.get(j).getCodigoTurma().equals(codigoTurma)) {
+                        this.Alunos.get(i).setTurma(this.Turmas.get(j));
+                        this.Turmas.get(j).quantAluno();
+                        this.Turmas.get(j).setListaTurma(this.Alunos.get(i));
+                    } else {
+                        System.out.println("Código da turma inválido");
+                    }
+                }
+            }else{
+                System.out.println("Código do aluno inválido");
+        }
+        }
+
     }
 
     //Atributos de Secretaria
@@ -117,18 +212,18 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         this.disciplinas.add(Redacao);
 
         //criando objeto de professor
-        Professor Pedro = new Professor("P1234", "Pedro", "Castelo Branco, Salvador, Bahia", "71 99912-3185", Matematica);
-        Professor Leila = new Professor("L1234", "Leila", "Cajazeiras 5, Salvador, Bahia", "71 98752-9123", Matematica);
-        Professor Jessica = new Professor("J1234", "Jessica", "Itapuã, Salvador, Bahia", "71 98825-6791", Portugues);
-        Professor Carlos = new Professor("C1234", "Carlos", "Itaigara, Salvador, Bahia", "71 99214-3576", Portugues);
-        Professor Otavio = new Professor("O1234", "Otavio", "Sussuarana, Salvador, Bahia", "71 99214-9851", Historia);
-        Professor Bruna = new Professor("B1234", "Bruna", "São Marcos, Salvador, Bahia", "71 99214-2348", Historia);
-        Professor Gisele = new Professor("G1234", "Gisele", "São Rafael, Salvador, Bahia", "71 99214-5028", Geografia);
-        Professor Ruan = new Professor("R1234", "Ruan", "Paralela, Salvador, Bahia", "71 99214-3001", Geografia);
-        Professor Duda = new Professor("D1234", "Duda", "Vale dos lagos, Salvador, Bahia", "71 99214-5578", Ciencia);
-        Professor Aline = new Professor("A1234", "Aline", "Pituba, Salvador, Bahia", "71 99214-4171", Ciencia);
-        Professor Ingride = new Professor("I1234", "Ingride", "Cajazeiras 11, Salvador, Bahia", "71 99214-7590", Redacao);
-        Professor Manuel = new Professor("M1234", "Manuel", "Ribeira, Salvador, Bahia", "71 99214-8051", Redacao);
+        Professor Pedro = new Professor("P1234", "Pedro", "Castelo Branco, Salvador, Bahia", "71 99912-3185");
+        Professor Leila = new Professor("L1234", "Leila", "Cajazeiras 5, Salvador, Bahia", "71 98752-9123");
+        Professor Jessica = new Professor("J1234", "Jessica", "Itapuã, Salvador, Bahia", "71 98825-6791");
+        Professor Carlos = new Professor("C1234", "Carlos", "Itaigara, Salvador, Bahia", "71 99214-3576");
+        Professor Otavio = new Professor("O1234", "Otavio", "Sussuarana, Salvador, Bahia", "71 99214-9851");
+        Professor Bruna = new Professor("B1234", "Bruna", "São Marcos, Salvador, Bahia", "71 99214-2348");
+        Professor Gisele = new Professor("G1234", "Gisele", "São Rafael, Salvador, Bahia", "71 99214-5028");
+        Professor Ruan = new Professor("R1234", "Ruan", "Paralela, Salvador, Bahia", "71 99214-3001");
+        Professor Duda = new Professor("D1234", "Duda", "Vale dos lagos, Salvador, Bahia", "71 99214-5578");
+        Professor Aline = new Professor("A1234", "Aline", "Pituba, Salvador, Bahia", "71 99214-4171");
+        Professor Ingride = new Professor("I1234", "Ingride", "Cajazeiras 11, Salvador, Bahia", "71 99214-7590");
+        Professor Manuel = new Professor("M1234", "Manuel", "Ribeira, Salvador, Bahia", "71 99214-8051");
 
         this.professores.add(Pedro); //adicionando no arraylist de professor
         this.professores.add(Leila);
@@ -144,12 +239,21 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         this.professores.add(Manuel);
 
         //criando objeto de professor;
-        Turma A1 = new Turma("1A", 25);
-        Turma B1 = new Turma("1B", 25);
-        Turma A2 = new Turma("2A", 25);
-        Turma B2 = new Turma("2B", 25);
-        Turma A3 = new Turma("3A", 25);
-        Turma B3 = new Turma("3B", 25);
+        Turma A1 = new Turma("1A");
+        Turma B1 = new Turma("1B");
+        Turma A2 = new Turma("2A");
+        Turma B2 = new Turma("2B");
+        Turma A3 = new Turma("3A");
+        Turma B3 = new Turma("3B");
+
+        Turmas.add(A1);
+        Turmas.add(B1);
+        Turmas.add(A2);
+        Turmas.add(B2);
+        Turmas.add(A3);
+        Turmas.add(B3);
+
+
 
         //preenchendo o array de horarios de cada turma
         A1.horariosTurma[0][0] = Matematica;
@@ -312,22 +416,87 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         B3.horariosTurma[2][4] = Redacao;
         B3.horariosTurma[3][4] = Redacao;
 
-    }
-
-    public void cadastrarAlunos(){ //criando objetos de aluno
         Aluno Joao = new Aluno ("2548", "1º ano", "João", "São Marcos, Salvador, Bahia", "71 99999-8129");
 
         this.Alunos.add(Joao);//adicionando no arraylist
-    }
-    public void cadastrarTurma() { //criando objetos de turma
-
-    }
-    public void Horariosturma(){ //preenchendo array de cada turma
 
     }
 
-    public void cadastrarProfessor(){//Criando objetos de professor
-
+    public void cadastrarAlunos(Aluno aluno){ //criando objetos de aluno
+        this.Alunos.add(aluno);
+    }
+    public void cadastrarProfessor(Professor professor){
+        this.professores.add(professor);
+    }
+    public void cadastrarDisciplina(Disciplina disciplina){
+        disciplinas.add(disciplina);
+    }
+    public void cadastrarTurma(Turma turma){
+        Turmas.add(turma);
+    }
+    public boolean buscarProfessor( String codigoProfessor){
+        for (int i = 0; i < professores.size(); i ++) {
+            if(this.professores.get(i).getCodigoProfessor().equals(codigoProfessor)) {
+                System.out.println(this.professores.get(i).toString());
+            }else{
+                System.out.println("Código referente ao professor está incorreto!");
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean buscarAluno( String codigoAluno) { //criando objetos de turma
+        for (int i = 0; i < Alunos.size(); i ++) {
+            if(this.Alunos.get(i).getCodigoAluno().equals(codigoAluno)) {
+                System.out.println(this.Alunos.get(i).toString());
+            }else{
+                System.out.println("Código referente ao aluno incorreto!");
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean buscarDisciplina(String codigoDiciplina){
+        for (int i = 0; i < disciplinas.size(); i ++) {
+            if(this.disciplinas.get(i).getCodigoDisciplina().equals(codigoDiciplina)) {
+                System.out.println(this.disciplinas.get(i).toString());
+            }else{
+                System.out.println("Código referente a disciplina incorreto!");
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean buscarTruma(String CodigoTurma){
+        for (int i = 0; i < Turmas.size(); i ++) {
+            if(this.Turmas.get(i).getCodigoTurma().equals(CodigoTurma)) {
+                System.out.println(this.Turmas.get(i).toString());
+            }else{
+                System.out.println("Código referente a turma incorreto!");
+                return false;
+            }
+        }
+        return true;
+    }
+    public void ListaDeAlunos() {
+            for (int i = 0; i < Alunos.size(); i++) {
+                System.out.println("Aluno: " + Alunos.get(i).getNome()+" | Código: "+Alunos.get(i).getCodigoAluno()+" | Série: "+Alunos.get(i).getSerie());
+            }
+    }
+    public void ListaDeProfessores(){
+        for(int i = 0; i < professores.size(); i++){
+            System.out.println("Professor: " + professores.get(i).getNome()+" | Código: "+professores.get(i).getCodigoProfessor()+" | Disciplina: "+professores.get(i).getDisciplina().getNome());
+        }
+    }
+    public void ListaDeDisciplinas(){
+        for(int i = 0; i < disciplinas.size(); i++){
+            System.out.println(disciplinas.get(i).toString());
+        }
+    }
+    public void ListaDeTurma(){
+        for(int i = 0 ; i <Turmas.size(); i++){
+            System.out.println(Turmas.get(i).toString());
+        }
     }
 
     }

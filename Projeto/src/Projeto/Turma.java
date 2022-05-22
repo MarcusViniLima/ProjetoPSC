@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Turma {
-
-
     //Atributos da turma
-    Aluno[] ListaTurma;
+    ArrayList<Aluno> ListaTurma;
     private String codigoTurma;
     private int quantAluno;
      Disciplina[][] horariosTurma;
 
 //Construtor da Turma
-    public Turma(String codigoTurma, int capacidade) {
-        this.ListaTurma=new Aluno[capacidade];
+    public Turma(String codigoTurma) {
+        this.ListaTurma = new ArrayList<Aluno>();
         this.codigoTurma = codigoTurma;
         this.quantAluno = 0;
         this.horariosTurma= new Disciplina[4][5];
@@ -36,6 +34,9 @@ public class Turma {
         this.quantAluno=quantAluno;
     }
 
+    public void setListaTurma(Aluno aluno) {
+        this.ListaTurma.add(aluno);
+    }
 
     //Metodos de turma----------------------------------------------------------------------------------------------------
     public int quantAluno(){
@@ -44,11 +45,6 @@ public class Turma {
 
     @Override
     public String toString() {
-        return "Turma{" +
-                "ListaTurma=" + Arrays.toString(ListaTurma) +
-                ", codigoTurma='" + codigoTurma + '\'' +
-                ", quantAluno=" + quantAluno +
-                ", horariosTurma=" + Arrays.toString(horariosTurma) +
-                '}';
+        return "Turma codigoTurma= "+getCodigoTurma()+"| Alunos= " + quantAluno +"| Horarios da Turma= "+horariosTurma.toString()+"|";
     }
 }

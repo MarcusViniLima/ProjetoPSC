@@ -9,10 +9,10 @@ public class Professor extends EntidadeEscolar {
     private Disciplina disciplinas;
 
     // Construtores ------------------------------------------------------------------------
-    public Professor(String codigoProfessor, String nome, String endereco, String telefone) {
+    public Professor(String codigoProfessor, String nome, String endereco, String telefone, Disciplina disciplina) {
         super(nome, endereco, telefone);
         this.codigoProfessor = codigoProfessor;
-        this.disciplinas = disciplinas;
+        this.disciplinas = disciplina;
         this.turmas = new ArrayList<Turma>();
     }
 
@@ -67,6 +67,6 @@ public class Professor extends EntidadeEscolar {
     @Override
     public String toString() {
         return "Professor: "+getNome()+ "| Código: "+getCodigoProfessor()+" | Endereço: "+getEndereco()+" | Telefone: "+getTelefone()+
-                "| Ministra "+ disciplinas.getNome()+" | Turmas: "+turmas.toString()+"|";
+                "| Ministra "+disciplinas.getNome()+" | Turmas: "+turmas.toString()+"|";
     }
 }

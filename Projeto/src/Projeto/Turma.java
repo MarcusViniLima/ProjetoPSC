@@ -8,16 +8,13 @@ public class Turma {
     ArrayList<Aluno> ListaTurma;
     private String codigoTurma;
     private int quantAluno;
-     Disciplina[][] horariosTurma;
+
 
 //Construtor da Turma
     public Turma(String codigoTurma) {
         this.ListaTurma = new ArrayList<Aluno>();
         this.codigoTurma = codigoTurma;
         this.quantAluno = 0;
-        this.horariosTurma= new Disciplina[4][5];
-
-
     }
 
 // Getters e Setters dos Atributos Turma
@@ -42,9 +39,14 @@ public class Turma {
     public int quantAluno(){
         return quantAluno++;
     }
+    public void alunosDaTurma(){
+        for(int i = 0; i < ListaTurma.size(); i++){
+            System.out.println("Aluno: "+this.ListaTurma.get(i).getNome()+" | Código: "+ this.ListaTurma.get(i).getCodigoAluno()+" | ");
+        }
+    }
 
     @Override
     public String toString() {
-        return "Turma codigoTurma= "+getCodigoTurma()+"| Alunos= " + quantAluno +"| Horarios da Turma= "+horariosTurma.toString()+"|";
+        return "Turma= "+getCodigoTurma()+"| Alunos= " + quantAluno +"|";
     }
 }

@@ -2,17 +2,18 @@ package Projeto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Turma {
     //Atributos da turma
-    ArrayList<Aluno> ListaTurma;
+    ArrayList<String> ListaTurma;
     private String codigoTurma;
     private int quantAluno;
 
 
 //Construtor da Turma
     public Turma(String codigoTurma) {
-        this.ListaTurma = new ArrayList<Aluno>();
+        this.ListaTurma = new ArrayList<String>();
         this.codigoTurma = codigoTurma;
         this.quantAluno = 0;
     }
@@ -31,7 +32,7 @@ public class Turma {
         this.quantAluno=quantAluno;
     }
 
-    public void setListaTurma(Aluno aluno) {
+    public void setListaTurma(String aluno) {
         this.ListaTurma.add(aluno);
     }
 
@@ -39,9 +40,13 @@ public class Turma {
     public int quantAluno(){
         return quantAluno++;
     }
+    public int quantAlunoRemovido(){
+        return quantAluno--;
+    }
     public void alunosDaTurma(){
+        Collections.sort(ListaTurma);
         for(int i = 0; i < ListaTurma.size(); i++){
-            System.out.println("Aluno: "+this.ListaTurma.get(i).getNome()+" | Código: "+ this.ListaTurma.get(i).getCodigoAluno()+" | ");
+            System.out.println("Aluno: "+this.ListaTurma.get(i)+" | ");
         }
     }
 

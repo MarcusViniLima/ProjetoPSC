@@ -88,13 +88,13 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
                     if (this.Turmas.get(j).getCodigoTurma().equals(codigoTurma)) {
                         this.Alunos.get(i).setTurma(this.Turmas.get(j));
                         this.Turmas.get(j).quantAluno();
-                        this.Turmas.get(j).setListaTurma(this.Alunos.get(i));
+                        this.Turmas.get(j).setListaTurma(this.Alunos.get(i).getNome());
                         System.out.println("Aluno cadastrado na turma com sucesso");
                     }
                 }
             }else{
                 System.out.println("Código do aluno ou turma inválido");
-        }
+            }
         }
 
     }
@@ -200,26 +200,26 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         this.Alunos.add(Vitoria);
         this.Alunos.add(Camilla);
 
-        A1.ListaTurma.add(Joao);
+        A1.ListaTurma.add("Joao");
         A1.quantAluno();
-        B1.ListaTurma.add(Giulia);
+        B1.ListaTurma.add("Giulia");
         B1.quantAluno();
-        A2.ListaTurma.add(Priscila);
+        A2.ListaTurma.add("Priscila");
         A2.quantAluno();
-        B2.ListaTurma.add(Maria);
+        B2.ListaTurma.add("Maria");
         B2.quantAluno();
-        A3.ListaTurma.add(Gustavo);
+        A3.ListaTurma.add("Gustavo");
         A3.quantAluno();
-        A3.ListaTurma.add(Camilla);
+        A3.ListaTurma.add("Camilla");
         A3.quantAluno();
-        B3.ListaTurma.add(Gabriel);
+        B3.ListaTurma.add("Gabriel");
         B3.quantAluno();
-        B3.ListaTurma.add(Camilla);
+        B3.ListaTurma.add("Camilla");
         B3.quantAluno();
 
 
     }
-    public String buscarProfessor( ){
+    public void buscarProfessor( ){
         System.out.println("-----------------------BUSCA DE PROFESSORES----------------------");
         System.out.println("Digite o código do professor?");
         leitor = new Scanner(System.in);
@@ -228,11 +228,12 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         for (int i = 0; i < professores.size(); i ++) {
             if(this.professores.get(i).getCodigoProfessor().equals(codigoProfessor)) {
                 System.out.println(this.professores.get(i).toString());
+            }else{
+                System.out.println("Código do professor inválido");
             }
         }
-        return "Código do professor está incorreto!";
     }
-    public boolean buscarAluno( ) { //
+    public void buscarAluno( ) { //
         System.out.println("-----------------------BUSCA DE ALUNOS----------------------");
         System.out.println("Digite o código do Aluno?");
         leitor = new Scanner(System.in);
@@ -240,11 +241,12 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         for (int i = 0; i < Alunos.size(); i ++) {
             if(this.Alunos.get(i).getCodigoAluno().equals(codigoAluno)) {
                 System.out.println(this.Alunos.get(i).toString());
+            }else{
+                System.out.println("Código do aluno  inválido");
             }
         }
-        return true;
     }
-    public boolean buscarDisciplina(){
+    public void buscarDisciplina(){
         System.out.println("-----------------------BUSCA DE DISCIPLINAS----------------------");
         System.out.println("Digite o código da disciplina?");
         leitor = new Scanner(System.in);
@@ -252,11 +254,13 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         for (int i = 0; i < disciplinas.size(); i ++) {
             if(this.disciplinas.get(i).getCodigoDisciplina().equals(codigoDiciplina)) {
                 System.out.println(this.disciplinas.get(i).toString());
+            }else{
+                System.out.println("Código da disciplina inválido");
             }
         }
-        return true;
+
     }
-    public boolean buscarTurma(){
+    public void buscarTurma(){
         System.out.println("-----------------------BUSCA DE TURMAS----------------------");
         System.out.println("Digite o código da turma");
         leitor = new Scanner(System.in);
@@ -264,35 +268,37 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
         for (int i = 0; i < Turmas.size(); i ++) {
             if(this.Turmas.get(i).getCodigoTurma().equals(CodigoTurma)) {
                 System.out.println(this.Turmas.get(i).toString());
+            }else{
+                System.out.println("Código da turma inválido");
             }
         }
-        return true;
+
     }
-    public void ListaDeAlunos() {
+    public void listaDeAlunos() {
         System.out.println("-----------------------LISTA DE ALUNOS----------------------");
             for (int i = 0; i < Alunos.size(); i++) {
                 System.out.println("Aluno: " + Alunos.get(i).getNome()+" | Código: "+Alunos.get(i).getCodigoAluno()+" | Série: "+Alunos.get(i).getSerie());
             }
     }
-    public void ListaDeProfessores(){
+    public void listaDeProfessores(){
         System.out.println("-----------------------LISTA DE PROFESSORES----------------------");
         for(int i = 0; i < professores.size(); i++){
             System.out.println("Professor: " + professores.get(i).getNome()+" | Código: "+professores.get(i).getCodigoProfessor()+" | Disciplina: "+professores.get(i).getDisciplina().getNome());
         }
     }
-    public void ListaDeDisciplinas(){
+    public void listaDeDisciplinas(){
         System.out.println("-----------------------LISTA DE DISCIPLINAS----------------------");
         for(int i = 0; i < disciplinas.size(); i++){
             System.out.println(disciplinas.get(i).toString());
         }
     }
-    public void ListaDeTurma(){
+    public void listaDeTurma(){
         System.out.println("-----------------------LISTA DE TURMAS----------------------");
         for(int i = 0 ; i <Turmas.size(); i++){
             System.out.println(Turmas.get(i).toString());
         }
     }
-    public void ListaAlunosDaTurma(){
+    public void listaAlunosDaTurma(){
         System.out.println("-----------------------LISTA DE ALUNOS DA TURMA----------------------");
         System.out.println("Digite o codigo da turma");
         leitor = new Scanner(System.in);
@@ -303,5 +309,94 @@ public class Secretaria extends EntidadeEscolar implements ISecretaria {
             }
         }
     }
-
+    public void removerAluno(){
+        System.out.println("-----------------------REMOÇÃO DE ALUNO----------------------");
+        System.out.println("Digite o codigo do aluno");
+        leitor = new Scanner(System.in);
+        String codigoAluno = leitor.nextLine();
+        for (int i = 0; i < Alunos.size(); i ++) {
+            if(this.Alunos.get(i).getCodigoAluno().equals(codigoAluno)) {
+                System.out.println("Deseja mesmo realizar a remoção do aluno? Sim ou Não");
+                leitor = new Scanner(System.in);
+                String resposta = leitor.nextLine();
+                if(resposta.equals("S") || resposta.equals("Sim") || resposta.equals("sim") || resposta.equals("s")){
+                    this.Alunos.get(i).turma.ListaTurma.remove(Alunos.get(i));
+                    this.Alunos.get(i).turma.quantAlunoRemovido();
+                    this.Alunos.remove(this.Alunos.get(i));
+                    System.out.println("Aluno removido com sucesso!");
+                    listaDeAlunos();
+                }else{
+                    System.out.println("Aluno não será removido!");
+                }
+            }else{
+                System.out.println("Código do aluno inválido");
+            }
+        }
     }
+    public void alterarAluno() {
+        System.out.println("-----------------------ALTERAÇÃO DE ALUNO----------------------");
+        System.out.println("Digite o codigo do Aluno que deseja modificar");
+        leitor = new Scanner(System.in);
+        String codigoAluno = leitor.nextLine();
+        for(int i = 0; i < Alunos.size(); i++){
+            if(this.Alunos.get(i).getCodigoAluno().equals(codigoAluno)){
+                System.out.println("Digite o que deseja modificar do Aluno");
+                System.out.println("Aluno: " + Alunos.get(i).getNome()+" \n Endereço: "+Alunos.get(i).getEndereco()+" \n Telefone: "+Alunos.get(i).getTelefone()+" \n Série: "+Alunos.get(i).getSerie()+" \n Turma: "+Alunos.get(i).getTurma());
+                System.out.println("1 - Sair");
+                System.out.println("2 - Nome");
+                System.out.println("3 - Endereço");
+                System.out.println("4 - Telefone");
+                System.out.println("5 - Série");
+                System.out.println("6 - Turma");
+                leitor = new Scanner(System.in);
+                int opt = leitor.nextInt();
+                if (opt == 1) {
+                    System.out.println("Sistema finalizando.");
+                    break;
+                } else if (opt == 2) {
+                    System.out.println("Digite o Nome que deseja colocar:");
+                    leitor = new Scanner(System.in);
+                    String novoName = leitor.nextLine();
+                    Alunos.get(i).setNome(novoName);
+                    System.out.println("Nome modificado com sucesso.");
+                } else if (opt == 3) {
+                    System.out.println("Digite o Endereço que deseja colocar:");
+                    leitor = new Scanner(System.in);
+                    String novoEndereco = leitor.nextLine();
+                    Alunos.get(i).setEndereco(novoEndereco);
+                    System.out.println("Endereço modificado com sucesso.");
+                } else if (opt == 4) {
+                    System.out.println("Digite o Telefone que deseja colocar:");
+                    leitor = new Scanner(System.in);
+                    String novoTelefone = leitor.nextLine();
+                    Alunos.get(i).setTelefone(novoTelefone);
+                    System.out.println("Telefone modificado com sucesso.");
+                } else if (opt == 5) {
+                    System.out.println("Digite a Série que deseja colocar:");
+                    leitor = new Scanner(System.in);
+                    String novaSerie = leitor.nextLine();
+                    Alunos.get(i).setSerie(novaSerie);
+                    System.out.println("Série modificada com sucesso.");
+                    System.out.println("Altere a turma do aluno.");
+                } else if(opt == 6){
+                    this.Alunos.get(i).turma.ListaTurma.remove(Alunos.get(i).getNome());
+                    this.Alunos.get(i).turma.quantAlunoRemovido();
+                    System.out.println("Digite o codigo da nova turma");
+                    leitor = new Scanner(System.in);
+                    String codigoTurma = leitor.nextLine();
+                    for(int j = 0; j < this.Turmas.size(); j++) {
+                        if (this.Turmas.get(j).getCodigoTurma().equals(codigoTurma)) {
+                            this.Alunos.get(i).setTurma(this.Turmas.get(j));
+                            this.Turmas.get(j).quantAluno();
+                            this.Turmas.get(j).setListaTurma(this.Alunos.get(i).getNome());
+                            System.out.println(Alunos.get(i));
+                            System.out.println("Aluno cadastrado na turma com sucesso");
+                        }
+                    }
+                }
+            }else{
+                System.out.println("Código do aluno ou turma inválido");
+            }
+        }
+    }
+}

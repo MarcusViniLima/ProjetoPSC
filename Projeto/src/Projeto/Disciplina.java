@@ -2,15 +2,15 @@ package Projeto;
 
 public class Disciplina {
     //Atributos-----------------------------------------------------
-    private String codigoDisciplina;
-    private String tipo;
-    private String nome;
+    private final String codigoDisciplina;
+    private final String tipo;
+    private final String nome;
 
     //Construtor--------------------------------------------------
     public Disciplina(String nome, String codigoDisciplina, String tipo){
         this.codigoDisciplina = codigoDisciplina;
         this.tipo = tipo;
-        this.nome=nome;
+        this.nome = nome;
     }
 
     //Getters e Setters------------------------------------------

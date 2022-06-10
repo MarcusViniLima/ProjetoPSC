@@ -1,8 +1,6 @@
 package Projeto;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-import Projeto.EntidadeEscolar;
 
 public class Principal {
     public static void main(String[] args) {
@@ -73,10 +71,4 @@ public class Principal {
         Scanner leitor = new Scanner(System.in);
         return leitor.nextInt();
     }
-
-    public static String obterStringTec() {
-        Scanner leitor = new Scanner(System.in);
-        return leitor.nextLine();
-    }
-
 }

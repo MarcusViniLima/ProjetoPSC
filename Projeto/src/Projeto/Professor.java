@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Professor extends EntidadeEscolar {
     // Atributos ---------------------------------------------------------------------------
-    private String codigoProfessor;
+    private final String codigoProfessor;
     ArrayList<Turma> turmas;
-    private Disciplina disciplinas;
+    private final Disciplina disciplinas;
 
     // Construtores ------------------------------------------------------------------------
     public Professor(String codigoProfessor, String nome, String endereco, String telefone, Disciplina disciplina) {
         super(nome, endereco, telefone);
         this.codigoProfessor = codigoProfessor;
         this.disciplinas = disciplina;
-        this.turmas = new ArrayList<Turma>();
+        this.turmas = new ArrayList<>();
     }
 
     //implementação obrigatória dos metódos abstratos da classe pai
@@ -50,17 +50,6 @@ public class Professor extends EntidadeEscolar {
         return codigoProfessor;
     }
 
-
-    public void setCodigoProfessor(String codigoProfessor) {
-        this.codigoProfessor = codigoProfessor;
-    }
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplinas = disciplina;
-    }
-
-    public void setTurmas(Turma turmas) {
-        this.turmas.add(turmas);
-    }
     // mostar os atributos de professor -------------------------------------------------------------------
 
 
